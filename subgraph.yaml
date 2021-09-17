@@ -1,0 +1,30 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Governor
+    network: arbitrum-one
+    source:
+      address: "0xd34cb69bef67bbdc1f66c1016d85df144d63488f"
+      abi: Governor
+      startBlock: 220318
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Governor
+      abis:
+        - name: Governor
+          file: ./abis/Governor.json
+        - name: Oracle
+          file: ./abis/Oracle.json
+      eventHandlers:
+        - event: RewardAdded(uint256,uint256)
+          handler: handleRewardAdded
+        - event: RewardRateChanged(uint256,uint256,uint256)
+          handler: handleRewardRateChanged
+      blockHandlers:
+        - handler: handleSyncData
+      file: ./src/mapping.ts

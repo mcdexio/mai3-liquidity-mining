@@ -1,0 +1,21 @@
+type Governor @entity {
+    # governor contract address
+    id: ID!
+    pool: String!
+    rewardRate: BigDecimal!
+    preRewardRate: BigDecimal!
+    changeRewardBlock: BigInt!
+    periodFinish: BigInt!
+    timestamp: Int!
+}
+
+type LiquidityMiningDayData @entity{
+    id: ID!
+    pool: String!
+    poolName: String
+    lastUpdateBlock: BigInt!
+    timestamp: Int!
+    token: String!
+    minedAmount: BigDecimal!
+    minedValueUSD: BigDecimal!
+}
